@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:qtech_project/style/style.dart';
 
 import '../widgets/commentsInListTile.dart';
@@ -30,83 +29,85 @@ class _VideoScreenState extends State<VideoScreen> {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Video Heading',
-                      style: videoHeading(Colors.black),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      '9334 views • 87 days ago',
-                      style: mainPageSubtitle(colorLightGray),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        reactionCard(
-                            'assets/images/heart.svg', 'MASH ALLAH (12k)'),
-                        reactionCard('assets/images/like.svg', 'LIKE (12k)'),
-                        reactionCard('assets/images/share.svg', 'SHARE'),
-                        reactionCard('assets/images/flag.svg', 'REPORT'),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    ListTile(
-                      leading: CircleAvatar(
-                        child: Icon(Icons.person_add_alt_sharp),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Video Heading',
+                        style: videoHeading(colorBlack),
                       ),
-                      title: Text('Chanel Name'),
-                      subtitle: Text(
-                        '3M Subscribers',
+                      SizedBox(height: 5),
+                      Text(
+                        '9334 views • 87 days ago',
                         style: mainPageSubtitle(colorLightGray),
                       ),
-                      trailing: FittedBox(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Row(
-                            children: [Text('+   '), Text('Subscribe')],
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          reactionCard(
+                              'assets/images/heart.svg', 'MASH ALLAH (12k)'),
+                          reactionCard('assets/images/like.svg', 'LIKE (12k)'),
+                          reactionCard('assets/images/share.svg', 'SHARE'),
+                          reactionCard('assets/images/flag.svg', 'REPORT'),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(
+                          child: Icon(Icons.person_add_alt_sharp),
+                        ),
+                        title: Text('Chanel Name'),
+                        subtitle: Text(
+                          '3M Subscribers',
+                          style: mainPageSubtitle(colorLightGray),
+                        ),
+                        trailing: FittedBox(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Row(
+                              children: [Text('+   '), Text('Subscribe')],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Divider(
-                      height: 2,
-                    ),
-                    ListTile(
-                      title: Text('Comments  7.5k',
-                          style: comment(colorLightGray)),
-                      trailing: Column(
-                        children: [
-                          SizedBox(height: 5),
-                          Icon(Icons.keyboard_arrow_up, size: 20),
-                          Icon(Icons.keyboard_arrow_down, size: 20),
-                        ],
+                      Divider(
+                        height: 2,
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: TextFormField(
-                        decoration: commentTextForm('Add Comment'),
+                      ListTile(
+                        title: Text('Comments  7.5k',
+                            style: comment(colorLightGray)),
+                        trailing: Column(
+                          children: [
+                            SizedBox(height: 5),
+                            Icon(Icons.keyboard_arrow_up, size: 20),
+                            Icon(Icons.keyboard_arrow_down, size: 20),
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: ListView.separated(
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: TextFormField(
+                          decoration: commentTextForm('Add Comment'),
+                        ),
+                      ),
+                      ListView.separated(
+                          shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return commentsInListTile();
                           },
                           separatorBuilder: (_, __) {
                             return const Divider();
                           },
-                          itemCount: 10),
-                    )
-                  ],
+                          itemCount: 10)
+                    ],
+                  ),
                 ),
               ),
             ),

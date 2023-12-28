@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:qtech_project/UI/screen/videoScreen.dart';
+import 'package:qtech_project/style/style.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({super.key});
@@ -15,13 +16,15 @@ class HomePageScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text('Trending Videos'),
+           Padding(padding: EdgeInsets.all(8),
+           child: Text('Trending Videos',style: videoHeading(colorBlack),)),
+          
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return VideoCard();
               },
-              itemCount: 4,
+              itemCount: 10,
             ),
           ),
         ],
