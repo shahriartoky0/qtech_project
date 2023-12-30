@@ -15,6 +15,7 @@ TextStyle videoHeading(color) {
   return TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 28,
+    fontFamily: 'Hind Siliguri',
     color: color,
   );
 }

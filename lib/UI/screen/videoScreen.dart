@@ -1,11 +1,15 @@
+import 'package:date_time_format/date_time_format.dart';
 import 'package:flutter/material.dart';
+import 'package:qtech_project/data/model/videoList.dart';
 import 'package:qtech_project/style/style.dart';
 
 import '../widgets/commentsInListTile.dart';
 import '../widgets/reactionCard.dart';
 
 class VideoScreen extends StatefulWidget {
-  const VideoScreen({Key? key});
+  const VideoScreen({Key? key, required this.playingVideo});
+
+  final Results playingVideo;
 
   @override
   State<VideoScreen> createState() => _VideoScreenState();
@@ -14,6 +18,8 @@ class VideoScreen extends StatefulWidget {
 class _VideoScreenState extends State<VideoScreen> {
   @override
   Widget build(BuildContext context) {
+    Results currentVideo = widget.playingVideo;
+    final dateTime = DateTime.parse(currentVideo.dateAndTime ?? '');
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -35,12 +41,12 @@ class _VideoScreenState extends State<VideoScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Video Heading',
+                        currentVideo.title.toString(),
                         style: videoHeading(colorBlack),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        '9334 views • 87 days ago',
+                        '${currentVideo.viewers} views • ${DateTimeFormat.format(dateTime, format: 'i')} days ago',
                         style: mainPageSubtitle(colorLightGray),
                       ),
                       SizedBox(

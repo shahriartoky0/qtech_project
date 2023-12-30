@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.6
   flutter_svg: ^0.22.0
+  http: ^1.1.0
+  date_time_format: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +68,14 @@ flutter:
     - family: poppins
       fonts:
         - asset: fonts/Poppins-Regular.ttf
+    - family: Hind Siliguri
+      fonts:
+        - asset: fonts/HindSiliguri-Regular.ttf
+        - asset: fonts/HindSiliguri-Bold.ttf
+        - asset: fonts/HindSiliguri-Light.ttf
+        - asset: fonts/HindSiliguri-Medium.ttf
+        - asset: fonts/HindSiliguri-SemiBold.ttf
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
