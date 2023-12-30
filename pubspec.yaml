@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^0.22.0
   http: ^1.1.0
   date_time_format: ^2.0.1
+  appinio_video_player: ^1.2.2
 
 dev_dependencies:
   flutter_test:

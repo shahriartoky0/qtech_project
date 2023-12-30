@@ -29,7 +29,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Text(
                   'Trending Videos',
                   style: videoHeading(colorBlack),

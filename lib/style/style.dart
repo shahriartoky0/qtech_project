@@ -43,13 +43,15 @@ TextStyle comment(color) {
     color: color,
   );
 }
+
 TextStyle commentAccountName(color) {
   return TextStyle(
     fontWeight: FontWeight.w700,
-    fontSize: 16,
+    fontSize: 13,
     color: color,
   );
 }
+
 TextStyle commentTime(color) {
   return TextStyle(
     fontWeight: FontWeight.w400,

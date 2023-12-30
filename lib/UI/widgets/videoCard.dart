@@ -1,3 +1,4 @@
+import 'package:date_time_format/date_time_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,7 @@ class VideoCardWidget extends StatefulWidget {
 class _VideoCardWidgetState extends State<VideoCardWidget> {
   @override
   Widget build(BuildContext context) {
+    final dateTime = DateTime.parse(widget.result.dateAndTime ?? '');
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -35,7 +37,7 @@ class _VideoCardWidgetState extends State<VideoCardWidget> {
                     // Replace with actual image URL
                     fit: BoxFit.cover,
                   ),
-                  Icon(Icons.play_circle_outline,
+                  const Icon(Icons.play_circle_outline,
                       size: 50, color: Colors.white),
                 ],
               ),
@@ -47,16 +49,19 @@ class _VideoCardWidgetState extends State<VideoCardWidget> {
                 ));
               },
               leading: CircleAvatar(
-                child: Icon(Icons.person_add_alt_sharp),
+                child: Image.network(widget.result.channelImage ?? ''),
               ),
               title: Text(
                 '${widget.result.title}',
-                style: TextStyle(fontFamily: 'Hind Siliguri'),
+                style: const TextStyle(
+                  fontFamily: 'Hind Siliguri',
+                ),
               ),
               // Replace with actual video title
               subtitle: Text(
-                  '53,245 views • Feb 21, 2021'), // Replace with actual data
-            ),
+                '${widget.result.viewers} views . ${DateTimeFormat.format(dateTime, format: 'M j, Y')}', // Replace with actual data
+              ),
+            )
           ],
         ),
       ),

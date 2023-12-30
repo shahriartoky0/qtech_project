@@ -11,7 +11,17 @@ class HomePageController extends GetxController {
   bool _inProgressTaskLoader = false;
   bool isSuccess = false;
 
-  Future<bool> getVideoList() async {
+  int currentPage = 1;
+  late int totalPages;
+  int pageSize = 2;
+
+  Future<void> loadNextPage() async {
+    if (currentPage < totalPages) {
+      await getVideoList(page: currentPage + 1);
+    }
+  }
+
+  Future<bool> getVideoList({int page = 1}) async {
     _inProgressTaskLoader = true;
     update();
 
@@ -20,7 +30,8 @@ class HomePageController extends GetxController {
     _inProgressTaskLoader = false;
     update();
     if (response.isSuccess) {
-
+      totalPages = (response.jsonResponse!['total'] / pageSize).ceil();
+      currentPage = page;
       videoListDetailsModel =
           VideoListDetailsModel.fromJson(response.jsonResponse!);
       isSuccess = true;

@@ -5,15 +5,15 @@ import '../../style/style.dart';
 
 ListTile commentsInListTile() {
   return ListTile(
-      leading: CircleAvatar(
+      leading: const CircleAvatar(
         child: Icon(Icons.person_add_alt_sharp),
       ),
       title: Row(children: [
         Text(
-          'Account Holder Name',
+          'Account Name',
           style: commentAccountName(colorLightGray),
         ),
-        SizedBox(
+        const SizedBox(
           width: 15,
         ),
         Text(
@@ -21,5 +21,5 @@ ListTile commentsInListTile() {
           style: commentTime(colorLightGray),
         ),
       ]),
-      subtitle: Text('Description'));
+      subtitle: const Text('Comment'));
 }
