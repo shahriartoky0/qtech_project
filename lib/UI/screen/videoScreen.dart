@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qtech_project/data/model/videoList.dart';
 import 'package:qtech_project/style/style.dart';
-import 'package:video_player/video_player.dart';
 import '../controller/videoController.dart';
 import '../widgets/commentsInListTile.dart';
 import '../widgets/reactionCard.dart';
@@ -19,24 +18,24 @@ class VideoScreen extends StatefulWidget {
 }
 
 class _VideoScreenState extends State<VideoScreen> {
-  late CustomVideoPlayerController _customVideoPlayerController;
-
   @override
   void initState() {
-    initializeVideoPlayer();
+    // initializeVideoPlayer();
     super.initState();
+    Get.find<AppVideoController>()
+        .initializeVideoPlayer(context, widget.playingVideo.manifest ?? '');
   }
 
-  void initializeVideoPlayer() {
-    VideoPlayerController _videoPlayerController;
-    _videoPlayerController = VideoPlayerController.networkUrl(
-        Uri.parse(widget.playingVideo.manifest ?? ''))
-      ..initialize().then((value) => () {
-            setState(() {});
-          });
-    _customVideoPlayerController = CustomVideoPlayerController(
-        context: context, videoPlayerController: _videoPlayerController);
-  }
+  // void initializeVideoPlayer() {
+  //   VideoPlayerController _videoPlayerController;
+  //   _videoPlayerController = VideoPlayerController.networkUrl(
+  //       Uri.parse(widget.playingVideo.manifest ?? ''))
+  //     ..initialize().then((value) => () {
+  //           setState(() {});
+  //         });
+  //   _customVideoPlayerController = CustomVideoPlayerController(
+  //       context: context, videoPlayerController: _videoPlayerController);
+  // }
 
   Widget build(BuildContext context) {
     Results currentVideo = widget.playingVideo;
@@ -49,9 +48,18 @@ class _VideoScreenState extends State<VideoScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomVideoPlayer(
-              customVideoPlayerController: _customVideoPlayerController,
-            ),
+            GetBuilder<AppVideoController>(builder: (appVideoController) {
+              return Visibility(
+                visible: appVideoController.loader == false,
+                replacement: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                child: CustomVideoPlayer(
+                  customVideoPlayerController:
+                      appVideoController.customVideoPlayerController,
+                ),
+              );
+            }),
             // Center(
             //   child: Stack(
             //     alignment: Alignment.center,
@@ -96,7 +104,6 @@ class _VideoScreenState extends State<VideoScreen> {
                       ),
                       screenSize < 300
                           ? Wrap(
-
                               spacing: 8.0,
                               runSpacing: 8.0,
                               children: [
