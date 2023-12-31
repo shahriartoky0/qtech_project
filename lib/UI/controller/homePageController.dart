@@ -13,7 +13,7 @@ class HomePageController extends GetxController {
 
   int currentPage = 1;
   late int totalPages;
-  int pageSize = 2;
+  int pageSize = 25;
 
   Future<void> loadNextPage() async {
     if (currentPage < totalPages) {

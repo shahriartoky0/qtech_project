@@ -18,24 +18,14 @@ class VideoScreen extends StatefulWidget {
 }
 
 class _VideoScreenState extends State<VideoScreen> {
+  late CustomVideoPlayerController _customVideoPlayerController;
+
   @override
   void initState() {
-    // initializeVideoPlayer();
     super.initState();
     Get.find<AppVideoController>()
         .initializeVideoPlayer(context, widget.playingVideo.manifest ?? '');
   }
-
-  // void initializeVideoPlayer() {
-  //   VideoPlayerController _videoPlayerController;
-  //   _videoPlayerController = VideoPlayerController.networkUrl(
-  //       Uri.parse(widget.playingVideo.manifest ?? ''))
-  //     ..initialize().then((value) => () {
-  //           setState(() {});
-  //         });
-  //   _customVideoPlayerController = CustomVideoPlayerController(
-  //       context: context, videoPlayerController: _videoPlayerController);
-  // }
 
   Widget build(BuildContext context) {
     Results currentVideo = widget.playingVideo;
@@ -49,39 +39,48 @@ class _VideoScreenState extends State<VideoScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GetBuilder<AppVideoController>(builder: (appVideoController) {
-              return Visibility(
-                visible: appVideoController.loader == false,
-                replacement: const Center(
-                  child: CircularProgressIndicator(),
-                ),
-                child: CustomVideoPlayer(
-                  customVideoPlayerController:
-                      appVideoController.customVideoPlayerController,
-                ),
-              );
+              if (appVideoController.isPlaying) {
+                // Show Video Player
+                return Visibility(
+                  replacement:
+                      const Stack(alignment: Alignment.center, children: [
+                    SizedBox(
+                      width: 200,
+                      height: 200,
+                    ),
+                    Center(child: CircularProgressIndicator())
+                  ]),
+                  visible: appVideoController.loader == false,
+                  child: CustomVideoPlayer(
+                    customVideoPlayerController:
+                        appVideoController.customVideoPlayerController,
+                  ),
+                );
+              } else {
+                // Show Thumbnail and Play Button
+                return GestureDetector(
+                  onTap: () {
+                    appVideoController.initializeVideoPlayer(
+                        context, currentVideo.manifest ?? '');
+                    appVideoController.togglePlaying(); // toggle video state
+                  },
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Image.network(
+                        currentVideo.thumbnail ??
+                            'https://via.placeholder.com/150',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: 200,
+                      ),
+                      const Icon(Icons.play_circle_outline,
+                          size: 64, color: Colors.white),
+                    ],
+                  ),
+                );
+              }
             }),
-            // Center(
-            //   child: Stack(
-            //     alignment: Alignment.center,
-            //     children: [
-            //       Image.network(
-            //         currentVideo.thumbnail ?? 'https://via.placeholder.com/150',
-            //         // Replace with actual image URL
-            //         fit: BoxFit.cover,
-            //       ),
-            //       IconButton(
-            //         color: colorDarkBlue,
-            //         mouseCursor: MouseCursor.uncontrolled,
-            //         onPressed: () {},
-            //         icon: const Icon(
-            //           Icons.play_circle_outline,
-            //           size: 50,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8),
@@ -174,14 +173,15 @@ class _VideoScreenState extends State<VideoScreen> {
                         ),
                       ),
                       ListView.separated(
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return commentsInListTile();
-                          },
-                          separatorBuilder: (_, __) {
-                            return const Divider();
-                          },
-                          itemCount: 5)
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return commentsInListTile();
+                        },
+                        separatorBuilder: (_, __) {
+                          return const Divider();
+                        },
+                        itemCount: 5,
+                      )
                     ],
                   ),
                 ),
@@ -191,5 +191,11 @@ class _VideoScreenState extends State<VideoScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _customVideoPlayerController.dispose();
+    super.dispose();
   }
 }

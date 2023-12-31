@@ -23,6 +23,7 @@ TextStyle videoHeading(color) {
 TextStyle mainPageSubtitle(color) {
   return TextStyle(
     fontWeight: FontWeight.w600,
+    fontFamily: 'poppins',
     fontSize: 13,
     color: color,
   );
@@ -31,6 +32,7 @@ TextStyle mainPageSubtitle(color) {
 TextStyle reactionSubtitle(color) {
   return TextStyle(
     fontWeight: FontWeight.w700,
+    fontFamily: 'poppins',
     fontSize: 13,
     color: color,
   );
@@ -39,6 +41,7 @@ TextStyle reactionSubtitle(color) {
 TextStyle comment(color) {
   return TextStyle(
     fontWeight: FontWeight.w500,
+    fontFamily: 'poppins',
     fontSize: 15,
     color: color,
   );
@@ -47,6 +50,7 @@ TextStyle comment(color) {
 TextStyle commentAccountName(color) {
   return TextStyle(
     fontWeight: FontWeight.w700,
+    fontFamily: 'poppins',
     fontSize: 13,
     color: color,
   );
@@ -55,6 +59,7 @@ TextStyle commentAccountName(color) {
 TextStyle commentTime(color) {
   return TextStyle(
     fontWeight: FontWeight.w400,
+    fontFamily: 'poppins',
     fontSize: 12,
     color: color,
   );
@@ -63,7 +68,7 @@ TextStyle commentTime(color) {
 InputDecoration commentTextForm(label) {
   return InputDecoration(
       labelText: label,
-      labelStyle: TextStyle(fontSize: 13),
-      border: OutlineInputBorder(),
-      suffixIcon: Icon(Icons.send));
+      labelStyle: const TextStyle(fontSize: 13),
+      border: const OutlineInputBorder(),
+      suffixIcon: const Icon(Icons.send));
 }

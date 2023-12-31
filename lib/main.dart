@@ -7,7 +7,7 @@ import 'package:qtech_project/UI/controller/videoController.dart';
 import 'package:qtech_project/UI/screen/homePage.dart';
 
 main() {
-  HttpOverrides.global = new MyHttpOverrides(); //development only
+  HttpOverrides.global = MyHttpOverrides(); //development only
   runApp(MyApp());
 }
 

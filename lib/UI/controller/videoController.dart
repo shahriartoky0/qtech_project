@@ -6,6 +6,8 @@ class AppVideoController extends GetxController {
   bool _loader = false;
 
   bool get loader => _loader;
+  bool _isPlaying = false;
+  bool get isPlaying => _isPlaying;
 
   late CustomVideoPlayerController customVideoPlayerController;
 
@@ -24,10 +26,15 @@ class AppVideoController extends GetxController {
     customVideoPlayerController = CustomVideoPlayerController(
         context: context, videoPlayerController: videoPlayerController);
   }
+  void togglePlaying() {
+    _isPlaying = !_isPlaying;
+    update(); // Notify listeners about change.
+  }
 
   @override
   void dispose() {
     customVideoPlayerController.dispose();
     super.dispose();
   }
+
 }
