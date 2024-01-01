@@ -69,7 +69,7 @@ class _VideoScreenState extends State<VideoScreen> {
                     children: [
                       Image.network(
                         currentVideo.thumbnail ??
-                            'https://via.placeholder.com/150',
+                            'https://img.freepik.com/premium-vector/repairs-computer-software-trending-concept-flat-illustration_720185-1381.jpg',
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: 200,
@@ -91,12 +91,12 @@ class _VideoScreenState extends State<VideoScreen> {
                     children: [
                       Text(
                         currentVideo.title.toString(),
-                        style: videoHeading(colorBlack),
+                        style: playingVideoHeading(colorGray900),
                       ),
                       const SizedBox(height: 5),
                       Text(
                         '${currentVideo.viewers} views • ${DateTimeFormat.format(dateTime, format: 'i')} days ago',
-                        style: mainPageSubtitle(colorLightGray),
+                        style: channelSubscriber(colorGray600),
                       ),
                       const SizedBox(
                         height: 10,
@@ -138,7 +138,7 @@ class _VideoScreenState extends State<VideoScreen> {
                           child: Image.network(currentVideo.channelImage ??
                               'https://w7.pngwing.com/pngs/81/570/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png'),
                         ),
-                        title: Text('${currentVideo.channelName}'),
+                        title: Text('${currentVideo.channelName}',style: comment(colorGray900),),
                         subtitle: Text(
                           '${currentVideo.channelSubscriber} subscribers',
                           style: mainPageSubtitle(colorLightGray),
@@ -157,7 +157,7 @@ class _VideoScreenState extends State<VideoScreen> {
                       ),
                       ListTile(
                         title:
-                            Text('Comments 5', style: comment(colorLightGray)),
+                            Text('Comments 5', style: comment(colorGray600)),
                         trailing: const Column(
                           children: [
                             SizedBox(height: 5),

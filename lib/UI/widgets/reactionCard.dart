@@ -17,13 +17,13 @@ Widget reactionCard(String imagePath, String label) {
           imagePath,
           width: 22,
           height: 22,
-          color: colorLightGray,
+          color: colorGray600,
 
         ),
         const SizedBox(height: 3),
         Text(
           label,
-          style: reactionSubtitle(colorLightGray),
+          style: reactionSubtitle(colorGray600),
         ),
       ],
     ),

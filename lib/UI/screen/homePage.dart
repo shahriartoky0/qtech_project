@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qtech_project/UI/controller/homePageController.dart';
 import 'package:qtech_project/style/style.dart';
-
 import '../widgets/videoCard.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -32,7 +31,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 padding: const EdgeInsets.all(8),
                 child: Text(
                   'Trending Videos',
-                  style: videoHeading(colorBlack),
+                  style: videoHeading(colorGray900),
                 )),
             Expanded(
               child: ListView.builder(

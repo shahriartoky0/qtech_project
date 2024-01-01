@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../style/style.dart';
@@ -11,15 +10,18 @@ ListTile commentsInListTile() {
       title: Row(children: [
         Text(
           'Account Name',
-          style: commentAccountName(colorLightGray),
+          style: commentAccountName(colorGray600),
         ),
         const SizedBox(
           width: 15,
         ),
         Text(
           'time ago ',
-          style: commentTime(colorLightGray),
+          style: commentTime(colorGray600),
         ),
       ]),
-      subtitle: const Text('Comment'));
+      subtitle: Text(
+        'Comment',
+        style: commentContent(colorGray600),
+      ));
 }

@@ -37,8 +37,8 @@ class VideoListDetailsModel {
 }
 
 class Links {
-  Null? next;
-  Null? previous;
+  int? next;
+  int? previous;
 
   Links({this.next, this.previous});
 

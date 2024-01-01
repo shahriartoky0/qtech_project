@@ -14,10 +14,11 @@ class HomePageController extends GetxController {
   int currentPage = 1;
   late int totalPages;
   int pageSize = 25;
+  int? nextPageNumber;
 
   Future<void> loadNextPage() async {
-    if (currentPage < totalPages) {
-      await getVideoList(page: currentPage + 1);
+    if (currentPage < totalPages && nextPageNumber != null) {
+      await getVideoList(page: nextPageNumber!); // Use the next page number
     }
   }
 
@@ -26,15 +27,19 @@ class HomePageController extends GetxController {
     update();
 
     final NetworkResponse response =
-        await NetworkCaller().getRequest(URLS.videoList);
+    await NetworkCaller().getRequest(URLS.videoList(page));
     _inProgressTaskLoader = false;
     update();
+
     if (response.isSuccess) {
       totalPages = (response.jsonResponse!['total'] / pageSize).ceil();
       currentPage = page;
+      nextPageNumber = response.jsonResponse!['links']['next'];
       videoListDetailsModel =
           VideoListDetailsModel.fromJson(response.jsonResponse!);
       isSuccess = true;
+    } else {
+      // Handle error or unsuccessful response
     }
     update();
     return isSuccess;

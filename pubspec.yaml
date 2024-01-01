@@ -72,10 +72,10 @@ flutter:
     - family: Hind Siliguri
       fonts:
         - asset: fonts/HindSiliguri-Regular.ttf
-        - asset: fonts/HindSiliguri-Bold.ttf
-        - asset: fonts/HindSiliguri-Light.ttf
-        - asset: fonts/HindSiliguri-Medium.ttf
-        - asset: fonts/HindSiliguri-SemiBold.ttf
+    - family: inter
+      fonts:
+        - asset: fonts/Inter-VariableFont.ttf
+
 
 
   # To add assets to your application, add an assets section, like this:
